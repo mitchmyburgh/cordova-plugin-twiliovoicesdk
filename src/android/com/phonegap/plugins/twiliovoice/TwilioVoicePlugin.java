@@ -221,6 +221,14 @@ public class TwilioVoicePlugin extends CordovaPlugin {
             intentFilter.addAction(ACTION_INCOMING_CALL);
             LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(cordova.getActivity());
             lbm.registerReceiver(mBroadcastReceiver, intentFilter);
+			FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, instanceIdResult -> {
+String newToken = instanceIdResult.getToken();
+    Log.e("newToken", newToken);
+   mFCMToken = newToken;
+				if (newToken != null) {
+					register();
+				}
+});
 
 			if (mIncomingCallIntent != null) {
 				Log.d(TAG, "initialize(): Handle an incoming call");
