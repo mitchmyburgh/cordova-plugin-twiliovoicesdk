@@ -26,6 +26,7 @@ import com.twilio.voice.CallState;
 import com.twilio.voice.RegistrationException;
 import com.twilio.voice.RegistrationListener;
 import com.twilio.voice.Voice;
+import com.twilio.voice.MessageListener;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -40,6 +41,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import com.phonegap.plugins.twiliovoice.fcm.VoiceFirebaseMessagingService;
 
 /**
  * Twilio Voice Plugin for Cordova/PhoneGap
