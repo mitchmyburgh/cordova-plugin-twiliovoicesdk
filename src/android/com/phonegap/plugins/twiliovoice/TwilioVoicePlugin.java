@@ -292,24 +292,25 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 						SoundPoolManager.getInstance(cordova.getActivity()).playRinging();
 							Log.d(TAG, "Call Invite Created");
 							mCallInvite = callInvite;
-							//VoiceFirebaseMessagingService.this.notify(callInvite, notificationId);
-							JSONObject callInviteProperties = new JSONObject();
-							try {
-									callInviteProperties.putOpt("from", mCallInvite.getFrom());
-									callInviteProperties.putOpt("to", mCallInvite.getTo());
-									callInviteProperties.putOpt("callSid", mCallInvite.getCallSid());
-									String callInviteState = getCallInviteState(mCallInvite.getState());
-									callInviteProperties.putOpt("state", callInviteState);
-							} catch (JSONException e) {
-									Log.e(TAG,e.getMessage(),e);
-							}
-			Log.d(TAG,"oncallinvitereceived");
-							javascriptCallback("oncallinvitereceived", callInviteProperties, mInitCallbackContext);
-					} else {
+							if (mCallInvite != null && (mCallInvite.getState() == CallInvite.State.PENDING)) {
+								//VoiceFirebaseMessagingService.this.notify(callInvite, notificationId);
+								JSONObject callInviteProperties = new JSONObject();
+								try {
+										callInviteProperties.putOpt("from", mCallInvite.getFrom());
+										callInviteProperties.putOpt("to", mCallInvite.getTo());
+										callInviteProperties.putOpt("callSid", mCallInvite.getCallSid());
+										String callInviteState = getCallInviteState(mCallInvite.getState());
+										callInviteProperties.putOpt("state", callInviteState);
+								} catch (JSONException e) {
+										Log.e(TAG,e.getMessage(),e);
+								}
+								Log.d(TAG,"oncallinvitereceived");
+								javascriptCallback("oncallinvitereceived", callInviteProperties, mInitCallbackContext);
+						} else {
 							SoundPoolManager.getInstance(cordova.getActivity()).stopRinging();
-			Log.d(TAG,"oncallinvitecanceled");
+							Log.d(TAG,"oncallinvitecanceled");
 							javascriptCallback("oncallinvitecanceled",mInitCallbackContext);
-					}
+						}
 					}
 
 					@Override
