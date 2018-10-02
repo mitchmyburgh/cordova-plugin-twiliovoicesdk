@@ -281,6 +281,19 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 			for (Map.Entry<String, String> entry: map.entrySet()) {
 				Log.d(TAG, entry.getKey() + " : " + entry.getValue());
 			}
+			Voice.handleMessage(this, data, new MessageListener() {
+					@Override
+					public void onCallInvite(CallInvite callInvite) {
+							Log.d(TAG, "Call Invite Created");
+							//VoiceFirebaseMessagingService.this.notify(callInvite, notificationId);
+							VoiceFirebaseMessagingService.this.sendCallInviteToPlugin(callInvite, notificationId);
+					}
+
+					@Override
+					public void onError(MessageException messageException) {
+							Log.e(TAG, messageException.getLocalizedMessage());
+					}
+			});
 			return true;
 		}
 
