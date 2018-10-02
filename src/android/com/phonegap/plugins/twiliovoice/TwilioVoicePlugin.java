@@ -275,7 +275,7 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 			setSpeaker(args,callbackContext);
 			return true;
 		} else if ("callInvite".equals(action)) {
-			JSONObject data = arguments.optJSONObject(0);
+			JSONObject data = args.optJSONObject(0);
 			Map<String, String> map = getMap(data);
 			Log.d(TAG, "Call Invite");
 			for (Map.Entry<String, String> entry: map.entrySet()) {
