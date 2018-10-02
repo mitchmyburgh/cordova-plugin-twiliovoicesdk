@@ -286,7 +286,7 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 				Log.d(TAG, entry.getKey() + " : " + entry.getValue());
 			}
 			final int notificationId = (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
-			Voice.handleMessage(this.cordova.getActivity().getApplicationContext(), data, new MessageListener() {
+			Voice.handleMessage(this.cordova.getActivity().getApplicationContext(), map, new MessageListener() {
 					@Override
 					public void onCallInvite(CallInvite callInvite) {
 						SoundPoolManager.getInstance(cordova.getActivity()).playRinging();
