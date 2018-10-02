@@ -27,6 +27,7 @@ import com.twilio.voice.RegistrationException;
 import com.twilio.voice.RegistrationListener;
 import com.twilio.voice.Voice;
 import com.twilio.voice.MessageListener;
+import com.twilio.voice.MessageException;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -284,12 +285,31 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 			for (Map.Entry<String, String> entry: map.entrySet()) {
 				Log.d(TAG, entry.getKey() + " : " + entry.getValue());
 			}
-			Voice.handleMessage(this, data, new MessageListener() {
+			final int notificationId = (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
+			Voice.handleMessage(this.cordova.getActivity().getApplicationContext(), data, new MessageListener() {
 					@Override
 					public void onCallInvite(CallInvite callInvite) {
+						SoundPoolManager.getInstance(cordova.getActivity()).playRinging();
 							Log.d(TAG, "Call Invite Created");
+							mCallInvite = callInvite;
 							//VoiceFirebaseMessagingService.this.notify(callInvite, notificationId);
-							VoiceFirebaseMessagingService.this.sendCallInviteToPlugin(callInvite, notificationId);
+							JSONObject callInviteProperties = new JSONObject();
+							try {
+									callInviteProperties.putOpt("from", mCallInvite.getFrom());
+									callInviteProperties.putOpt("to", mCallInvite.getTo());
+									callInviteProperties.putOpt("callSid", mCallInvite.getCallSid());
+									String callInviteState = getCallInviteState(mCallInvite.getState());
+									callInviteProperties.putOpt("state", callInviteState);
+							} catch (JSONException e) {
+									Log.e(TAG,e.getMessage(),e);
+							}
+			Log.d(TAG,"oncallinvitereceived");
+							javascriptCallback("oncallinvitereceived", callInviteProperties, mInitCallbackContext);
+					} else {
+							SoundPoolManager.getInstance(cordova.getActivity()).stopRinging();
+			Log.d(TAG,"oncallinvitecanceled");
+							javascriptCallback("oncallinvitecanceled",mInitCallbackContext);
+					}
 					}
 
 					@Override
