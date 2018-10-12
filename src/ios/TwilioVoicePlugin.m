@@ -377,6 +377,7 @@
     if (callState) {
         callProperties[@"state"] = callState;
     }
+    self.callInvite = nil;
     [self javascriptCallback:@"oncalldidconnect" withArguments:callProperties];
 }
 
