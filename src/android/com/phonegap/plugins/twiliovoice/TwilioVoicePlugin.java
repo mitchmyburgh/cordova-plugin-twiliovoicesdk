@@ -260,7 +260,13 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 		}  else if ("unmuteCall".equals(action)) {
 			unmuteCall(callbackContext);
 			return true;
-		}  else if ("isCallMuted".equals(action)) {
+		} else if ("turnRingerOn".equals(action)) {
+			SoundPoolManager.getInstance(cordova.getActivity()).playRinging();
+			return true;
+		}  else if ("turnRingerOff".equals(action)) {
+			SoundPoolManager.getInstance(cordova.getActivity()).stopRinging();
+			return true;
+		} else if ("isCallMuted".equals(action)) {
 			isCallMuted(callbackContext);
 			return true;
 		} else if ("callStatus".equals(action)) {

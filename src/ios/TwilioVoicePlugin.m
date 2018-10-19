@@ -241,6 +241,17 @@
     }
 }
 
+- (void) turnRingerOn: (CDVInvokedUrlCommand*)command {
+    [self.ringtonePlayer play];
+}
+
+- (void) turnRingerOff: (CDVInvokedUrlCommand*)command {
+  if ([self.ringtonePlayer isPlaying]) {
+      //pause ringtone
+      [self.ringtonePlayer pause];
+  }
+}
+
 - (void) isCallMuted: (CDVInvokedUrlCommand*)command {
     if (self.call) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:self.call.muted];

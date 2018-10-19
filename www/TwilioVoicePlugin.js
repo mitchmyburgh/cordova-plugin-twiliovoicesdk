@@ -40,6 +40,14 @@
         Cordova.exec(null, null, "TwilioVoicePlugin", "unmuteCall", null);
     }
 
+    TwilioPlugin.TwilioVoiceClient.prototype.turnRingerOn = function() {
+        Cordova.exec(null, null, "TwilioVoicePlugin", "turnRingerOn", null);
+    }
+
+    TwilioPlugin.TwilioVoiceClient.prototype.turnRingerOff = function() {
+        Cordova.exec(null, null, "TwilioVoicePlugin", "turnRingerOff", null);
+    }
+
     TwilioPlugin.TwilioVoiceClient.prototype.isCallMuted = function(fn) {
         Cordova.exec(fn, null, "TwilioVoicePlugin", "isCallMuted", null);
     }
