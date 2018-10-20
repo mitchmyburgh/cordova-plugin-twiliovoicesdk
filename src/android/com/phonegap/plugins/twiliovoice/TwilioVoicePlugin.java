@@ -133,6 +133,7 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 	private Call.Listener mCallListener = new Call.Listener() {
 		@Override
 		public void onConnected(Call call) {
+			SoundPoolManager.getInstance(cordova.getActivity()).stopRinging();
 			mCall = call;
 
 			JSONObject callProperties = new JSONObject();
