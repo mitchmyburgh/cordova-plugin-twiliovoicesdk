@@ -360,6 +360,10 @@
 
 - (void)callDidConnect:(TVOCall *)call {
     NSLog(@"Call Did Connect: %@", [call description]);
+    if ([self.ringtonePlayer isPlaying]) {
+        //pause ringtone
+        [self.ringtonePlayer pause];
+    }
     self.call = call;
 
     if (!self.enableCallKit) {
