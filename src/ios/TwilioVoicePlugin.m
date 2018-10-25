@@ -183,6 +183,10 @@
         [self.call disconnect];
         self.call = nil;
     }
+    if ([self.ringtonePlayer isPlaying]) {
+        //pause ringtone
+        [self.ringtonePlayer pause];
+    }
 }
 
 - (void) acceptCallInvite:(CDVInvokedUrlCommand*)command {
