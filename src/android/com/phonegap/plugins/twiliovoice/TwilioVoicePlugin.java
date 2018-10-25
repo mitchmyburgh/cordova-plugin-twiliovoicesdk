@@ -386,6 +386,7 @@ public class TwilioVoicePlugin extends CordovaPlugin {
 		cordova.getThreadPool().execute(new Runnable(){
 			public void run() {
 				mCall.disconnect();
+				mCall = null;
 				callbackContext.success();
 			}
 		});

@@ -178,7 +178,8 @@
     if (self.callInvite && self.callInvite.state == TVOCallInviteStatePending) {
         [self.callInvite reject];
         self.callInvite = nil;
-    } else if (self.call) {
+    }
+    if (self.call) {
         [self.call disconnect];
         self.call = nil;
     }
