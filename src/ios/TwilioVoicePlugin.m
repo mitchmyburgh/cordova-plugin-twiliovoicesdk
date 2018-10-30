@@ -148,18 +148,6 @@
 }
 
 - (void) call:(CDVInvokedUrlCommand*)command {
-  if (self.callInvite && self.callInvite.state == TVOCallInviteStatePending) {
-      [self.callInvite reject];
-      self.callInvite = nil;
-  }
-  if (self.call) {
-      [self.call disconnect];
-      self.call = nil;
-  }
-  if ([self.ringtonePlayer isPlaying]) {
-      //pause ringtone
-      [self.ringtonePlayer pause];
-  }
     if ([command.arguments count] > 0) {
         self.accessToken = command.arguments[0];
         if ([command.arguments count] > 1) {
