@@ -179,6 +179,7 @@
         [self.callInvite reject];
         self.callInvite = nil;
     }
+    self.callInvite = nil;
     if (self.call) {
         [self.call disconnect];
         self.call = nil;
