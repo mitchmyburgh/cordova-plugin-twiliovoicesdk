@@ -35,6 +35,8 @@
                 <param name="android-package" value="com.phonegap.plugins.twiliovoice.TwilioVoicePlugin"/>
             </feature>
         </config-file>
+        
+        <dependency id="phonegap-plugin-push"/>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <!-- [START fcm_listener] -->
