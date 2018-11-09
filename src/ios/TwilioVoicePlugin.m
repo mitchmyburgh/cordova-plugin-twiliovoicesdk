@@ -334,7 +334,7 @@
         } else {
             [self showNotification:(self.maskIncomingPhoneNumber ? @"Unknown" : callInvite.from)];
             //play ringtone
-            [self.ringtonePlayer play];
+            //[self.ringtonePlayer play];
         }
 
         [self javascriptCallback:@"oncallinvitereceived" withArguments:callInviteProperties];
