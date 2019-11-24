@@ -277,6 +277,7 @@
                                                   deviceToken:self.pushDeviceToken completion:^(NSError * _Nullable error) {
             if (error) {
                 NSLog(@"Error registering Voice Client for VOIP Push: %@", [error localizedDescription]);
+                NSLog(error);
             } else {
                 NSLog(@"Registered Voice Client for VOIP Push");
             }
