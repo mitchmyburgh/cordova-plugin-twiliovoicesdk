@@ -196,6 +196,8 @@ static NSString *const kTwimlParamTo = @"To";
     } else if (self.call) {
         [self.call disconnect];
     }
+    self.call = nil;
+    self.callInvite = nil;
 }
 
 - (void) acceptCallInvite:(CDVInvokedUrlCommand*)command {
