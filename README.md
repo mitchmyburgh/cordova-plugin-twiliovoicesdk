@@ -5,7 +5,10 @@ PhoneGap/Cordova Plugin for Twilio Programmable Voice SDK
 ```
 cordova plugin add https://github.com/mitchmyburgh/cordova-plugin-twiliovoicesdk --variable INCOMING_CALL_APP_NAME=Timon --variable ENABLE_CALL_KIT=false --variable MASK_INCOMING_PHONE_NUMBER=false
 ```
-
+Add the following to your podfile
+```
+pod 'TwilioVoice', '~> 5.2.0'
+```
 # Changed Package Name to cordova-plugin-twiliovoicesdk
 Note - as of August 21, 2018, this NPM package name will match the Cordova Plugin id (as version 3.0.x)
 
